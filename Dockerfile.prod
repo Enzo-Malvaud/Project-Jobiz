@@ -1,0 +1,19 @@
+FROM php:8.4-fpm
+
+WORKDIR /var/www/
+
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+RUN install-php-extensions pdo_mysql intl zip opcache 
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+COPY . .
+
+RUN composer install \
+    --no-dev \
+    --optimize-autoloader \
+    --no-interaction \
+    --no-scripts
+
+
+RUN chown -R www-data:www-data /var/www/
