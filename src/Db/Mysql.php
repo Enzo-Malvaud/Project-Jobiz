@@ -12,14 +12,28 @@ class Mysql
     private ?\PDO $pdo = null;
     private static ?self $_instance = null;
 
-    private function __construct()
+        private function __construct()
     {
-        // On récupère les variables avec une valeur par défaut au cas où
-        $this->dbHost     = getenv("DB_HOST") ?: 'db';
-        $this->dbUser     = getenv("DB_USER") ?: 'root';
-        $this->dbPassword = getenv("DB_PASSWORD") ?: '';
+        $host = getenv("DB_HOST");
+        $user = getenv("DB_USER");
+        $pass = getenv("DB_PASSWORD");
+        $name = getenv("DB_NAME");
+
+    if (!$host) {
+        // --- INFOS INFINITYFREE ---
+        $this->dbHost     = 'sql100.infinityfree.com'; 
+        $this->dbUser     = 'if0_41775281';      
+        $this->dbPassword = 'kFln00FYn1';     
+        $this->dbName     = 'if0_41775281_jobiz_db';   
+        $this->dbPort     = '3306';
+    } else {
+        // --- INFOS DOCKER ---
+        $this->dbHost     = $host;
+        $this->dbUser     = $user;
+        $this->dbPassword = $pass;
+        $this->dbName     = $name;
         $this->dbPort     = getenv("DB_PORT") ?: '3306';
-        $this->dbName     = getenv("DB_NAME") ?: 'studi_jobiz';
+    }
     }
 
     public static function getInstance(): self

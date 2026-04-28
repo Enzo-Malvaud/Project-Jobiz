@@ -1,1 +1,27 @@
+# --- PHP / Composer ---
+vendor/
+.phpunit.result.cache
+*.log
+
+
+
+# --- Environnement / Sécurité ---
 .env
+.env.local
+.env.*.local
+
+# --- Système / IDE ---
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+.DS_Store
+Thumbs.db
+
+# --- InfinityFree / FTP ---
+# Si tu crées des fichiers de logs ou de cache temporaires
+temp/
+logs/
