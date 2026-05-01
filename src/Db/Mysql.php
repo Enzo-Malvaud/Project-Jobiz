@@ -2,7 +2,9 @@
 namespace App\Db;
 
 class Mysql
-{
+{ 
+
+
     private string $dbName;
     private string $dbUser;
     private string $dbPassword;
@@ -21,11 +23,11 @@ class Mysql
 
     if (!$host) {
         // --- INFOS INFINITYFREE ---
-        $this->dbHost     = 'sql100.infinityfree.com'; 
-        $this->dbUser     = 'if0_41775281';      
-        $this->dbPassword = 'kFln00FYn1';     
-        $this->dbName     = 'if0_41775281_jobiz_db';   
-        $this->dbPort     = '3306';
+        $this->dbHost     = $_ENV['DB_HOST_PROD']; 
+        $this->dbUser     = $_ENV['DB_USER_PROD'];      
+        $this->dbPassword = $_ENV['DB_PASSWORD_PROD'];     
+        $this->dbName     = $_ENV['DB_NAME_PROD'];   
+        $this->dbPort     = $_ENV['DB_PORT_PROD'];
     } else {
         // --- INFOS DOCKER ---
         $this->dbHost     = $host;
